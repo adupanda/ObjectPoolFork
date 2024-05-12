@@ -40,6 +40,7 @@ namespace CosmicCuration.Bullets
                 Bullet = new BulletController(bulletView, bulletScriptableObject),
                 isUsed = true
             };
+            pooledBullets.Add(pooledBullet);
             return pooledBullet.Bullet;
         }
         public class PooledBullet
@@ -50,6 +51,14 @@ namespace CosmicCuration.Bullets
 
 
         
+        }
+
+        public void ReturnToBulletPool(BulletController returnBullet)
+        {
+            PooledBullet pooledBullet = pooledBullets.Find(item => item.Bullet.Equals(returnBullet));
+            pooledBullet.isUsed=false;
+
+
         }
 
     }
